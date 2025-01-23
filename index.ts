@@ -1,8 +1,10 @@
 import "dotenv/config"
-// Import the 'express' module
+import "express-async-errors"
 import express from "express"
-import connectDB from "./services/connectdb"
-import authRouter from "./routes/auth"
+import connectDB from "./services/db"
+import authRouter from "./routes/auth.route"
+import errorHandlerMiddleware from "./middleware/error.middleware"
+import notFoundMiddleware from "./middleware/notFound.middleware"
 
 // Create an Express application
 const app = express()
@@ -18,7 +20,7 @@ app.get("/", (req, res) => {
 })
 
 app.use("/api/v1/auth", authRouter)
-
+app.use(errorHandlerMiddleware)
 const start = async () => {
   try {
     console.log("Connecting to database...")
