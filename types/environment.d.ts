@@ -1,11 +1,14 @@
-import { MyRequestUser } from './type'
+import { MyRequestUser } from "../type" // Adjust the import path as needed
+
+export {}
 
 declare global {
   namespace Express {
-    interface Request extends Request {
+    interface Request {
       user: MyRequestUser
     }
   }
+
   namespace NodeJS {
     interface ProcessEnv {
       MONGO_URI: string
@@ -13,5 +16,3 @@ declare global {
     }
   }
 }
-
-export {}

@@ -16,9 +16,14 @@ export const errorHandlerMiddleware: ErrorRequestHandler = (
     msg: err.message || "Something went wrong try again later",
   }
 
+  if (err.name === "ValidationError") {
+    customError.msg = Object.values(err.errors)
+      .map((item: any) => item.message)
+      .join(",")
+    customError.statusCode = 400
+  }
+
   return res
     .status(StatusCodes.INTERNAL_SERVER_ERROR)
     .json({ msg: customError.msg })
 }
-
-

@@ -1,7 +1,7 @@
 import mongoose from "mongoose"
 import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt"
-import { UserDocument } from "../types"
+import { JWTPayload, UserDocument } from "../types"
 
 export interface UserDoc extends UserDocument {
   comparePassword(password: string): boolean
@@ -17,6 +17,10 @@ const UserSchema = new mongoose.Schema<UserDoc>(
     email: {
       type: String,
       required: true,
+      match: [
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+        "Please provide a valid email",
+      ],
       unique: true,
     },
     password: {
@@ -31,13 +35,10 @@ const UserSchema = new mongoose.Schema<UserDoc>(
 
 UserSchema.methods.generateAuthToken = function () {
   const user = this
-  const token = jwt.sign(
-    { _id: user._id, email: user.email },
-    process.env.JWT_SECRET as string,
-    {
-      expiresIn: "7 days",
-    },
-  )
+  const payload: JWTPayload = { _id: user._id, email: user.email }
+  const token = jwt.sign(payload, process.env.JWT_SECRET as string, {
+    expiresIn: "7 days",
+  })
   return token
 }
 
