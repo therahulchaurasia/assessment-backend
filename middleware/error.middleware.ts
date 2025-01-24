@@ -1,7 +1,7 @@
 import { ErrorRequestHandler, NextFunction, Request, Response } from "express"
 import { StatusCodes } from "http-status-codes"
 
-const errorHandlerMiddleware: ErrorRequestHandler = (
+export const errorHandlerMiddleware: ErrorRequestHandler = (
   err: Error | any,
   req: Request,
   res: Response,
@@ -21,4 +21,4 @@ const errorHandlerMiddleware: ErrorRequestHandler = (
     .json({ msg: customError.msg })
 }
 
-export default errorHandlerMiddleware
+
