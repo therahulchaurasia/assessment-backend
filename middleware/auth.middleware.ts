@@ -23,8 +23,10 @@ export const authMiddleware = async (
     if (!user) throw new Error("Authentication invalid")
     const MyRequestUser: MyRequestUser = {
       _id: user._id,
-      id: user.id,
-      email: user.email,
+			email: user.email,
+			name: user.name,
+			createdAt: user.createdAt,
+			updatedAt: user.updatedAt,
     }
     req.user = MyRequestUser
     next()

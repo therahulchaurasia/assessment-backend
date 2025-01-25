@@ -1,6 +1,5 @@
-import express, { Router } from "express"
+import { Router } from "express"
 import { loginUserController, registerUserController } from "../controllers"
-import { authMiddleware } from "../middleware"
 const router = Router()
 
 router.post("/register", registerUserController)

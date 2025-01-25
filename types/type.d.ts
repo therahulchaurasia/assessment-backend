@@ -1,7 +1,9 @@
 export type MyRequestUser = {
   _id: string | unknown
-  id: string
+  name: string
   email: string
+	createdAt: Date
+	updatedAt: Date
 }
 
 export type JWTPayload = {

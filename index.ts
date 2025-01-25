@@ -2,13 +2,14 @@ import "dotenv/config"
 import "express-async-errors"
 import express from "express"
 import connectDB from "./services/db"
-import authRouter from "./routes/auth.route"
 import helmet from "helmet"
 import cors from "cors"
 import morgan from "morgan"
 import { errorHandlerMiddleware } from "./middleware/error.middleware"
 const mode = process.env.MODE
 const app = express()
+import authRouter from "./routes/auth.route"
+import userRouter from "./routes/user.route"
 
 app.use(helmet())
 app.use(
@@ -28,6 +29,7 @@ app.get("/", (req, res) => {
 })
 
 app.use("/api/v1/auth", authRouter)
+app.use("/api/v1/my", userRouter)
 app.use(errorHandlerMiddleware)
 const start = async () => {
   try {
