@@ -3,9 +3,22 @@ import "express-async-errors"
 import express from "express"
 import connectDB from "./services/db"
 import authRouter from "./routes/auth.route"
+import helmet from "helmet"
+import cors from "cors"
+import morgan from "morgan"
 import { errorHandlerMiddleware } from "./middleware/error.middleware"
-
+const mode = process.env.MODE
 const app = express()
+
+app.use(helmet())
+app.use(
+  cors({
+    origin: process.env.ALLOWED_ORIGIN,
+    credentials: true,
+  }),
+)
+
+mode === "dev" && app.use(morgan("dev"))
 app.use(express.json())
 
 const port = 3000

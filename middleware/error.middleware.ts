@@ -23,7 +23,5 @@ export const errorHandlerMiddleware: ErrorRequestHandler = (
     customError.statusCode = 400
   }
 
-  return res
-    .status(StatusCodes.INTERNAL_SERVER_ERROR)
-    .json({ msg: customError.msg })
+  return res.status(customError.statusCode).json({ message: customError.msg })
 }

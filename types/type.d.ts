@@ -8,3 +8,8 @@ export type JWTPayload = {
   _id: string
   email: string
 }
+
+export type CustomError = {
+  statusCode: number
+  message: string
+}

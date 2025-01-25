@@ -13,6 +13,7 @@ declare global {
     interface ProcessEnv {
       MONGO_URI: string
       JWT_SECRET: string
+      ALLOWED_ORIGIN: string
     }
   }
 }
