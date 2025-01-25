@@ -10,7 +10,8 @@ const mode = process.env.MODE
 const app = express()
 import authRouter from "./routes/auth.route"
 import userRouter from "./routes/user.route"
-
+import taskRouter from "./routes/task.route"
+import { authMiddleware } from "./middleware/auth.middleware"
 app.use(helmet())
 app.use(
   cors({
@@ -30,6 +31,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/v1/auth", authRouter)
 app.use("/api/v1/my", userRouter)
+app.use('/api/v1/tasks', authMiddleware,taskRouter)
 app.use(errorHandlerMiddleware)
 const start = async () => {
   try {

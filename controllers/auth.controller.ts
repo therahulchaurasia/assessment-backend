@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
 import { StatusCodes } from "http-status-codes"
-import { User } from "../models/index"
+import { User } from "../models/user.model"
 import { BadRequestError, NotFoundError } from "../errors/index"
 
 const registerUserController = async (req: Request, res: Response) => {
