@@ -1,5 +1,5 @@
 import { StatusCodes } from "http-status-codes"
-import { CustomError } from "../types/index"
+import { CustomError } from "../types/type"
 
 class CustomAPIError extends Error {
   public statusCode: number

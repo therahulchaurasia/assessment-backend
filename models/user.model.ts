@@ -1,7 +1,9 @@
 import mongoose from "mongoose"
 import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt"
-import { JWTPayload, UserDocument } from "../types"
+import { UserDocument } from "../types/document"
+import { JWTPayload } from "../types/type"
+
 
 export interface UserDoc extends UserDocument {
   comparePassword(password: string): boolean

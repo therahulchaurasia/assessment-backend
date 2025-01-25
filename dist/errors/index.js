@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ServerError = exports.UnauthorizedError = exports.NotFoundError = exports.BadRequestError = void 0;
 const http_status_codes_1 = require("http-status-codes");
 class CustomAPIError extends Error {
+    statusCode;
     constructor(error) {
         super(error.message);
         this.statusCode = error.statusCode;

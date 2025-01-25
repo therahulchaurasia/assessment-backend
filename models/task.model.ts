@@ -1,4 +1,4 @@
-import { TaskDocument } from "model"
+import { TaskDocument } from "../types/document.d"
 import mongoose, { Schema } from "mongoose"
 
 const TaskSchema = new Schema<TaskDocument>(

@@ -1,4 +1,4 @@
-import { MyRequestUser } from "../type" // Adjust the import path as needed
+import { MyRequestUser } from "./type" // Adjust the import path as needed
 
 export {}
 
